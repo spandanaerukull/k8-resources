@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: roboshop
+  labels:
+    environment: dev
+    project: roboshop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# namespace ---> isolated project space in kubernetes where you can create your work loads 
+# for one project you can create one namespace in that namespace you can create your deployments, services, pods, etc. means we can create all the kubernetes resources in that namespace
+# examp: vpc 
+
+#
