@@ -3,8 +3,8 @@ kind: Namespace
 metadata:
   name: roboshop
   labels:
-    environment: dev
     project: roboshop
+    environment: dev
 
 
 
