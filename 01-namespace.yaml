@@ -7,7 +7,17 @@ metadata:
     environment: dev
 
 
-
+# this is the basic for every kubernetes project
+# namespace is a way to isolate resources in kubernetes
+# we can create multiple namespaces in kubernetes
+# each namespace can have its own resources like pods, services, deployments, etc.
+# we can create multiple namespaces for different projects in kubernetes
+# for example, we can create a namespace for each project like roboshop, payment, user, etc.
+# this way we can isolate resources for each project and manage them separately
+# namespace is like a folder in a file system where you can create your files
+# in kubernetes, namespace is like a folder where you can create your resources
+# we can create multiple namespaces in kubernetes for different projects
+# we can create a namespace for each project and manage resources separatel
 
 
 

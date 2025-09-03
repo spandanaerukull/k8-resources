@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    purpose: demo
+spec:
+  containers:
+    - name: nginx
+      image: nginx 
+      
+# basic syntax for pod in kubernetes
+# pod is a group of one or more containers that are deployed together on the same host
+# pod is the smallest deployable unit in kubernetes
+#pod is also aresource in kubernetes
+#pod is a group of one or more containers
+#pod is the smallest deployable unit in kubernetes
+#pod is a logical host for one or more containers
+#pod is a group of one or more containers that are deployed together on the same host
+#pod is a group of one or more containers that share the same network namespace
+#pod is a group of one or more containers that share the same storage volume
+#pod is a group of one or more containers that share the same IP address
+#pod is a group of one or more containers that share the same port
+#pod is a group of one or more containers that share the same hostname
+#pod is a group of one or more containers that share the same environment variables
+#pod is a group of one or more containers that share the same resources
+#pod is a group of one or more containers that share the same lifecycle
+#pod is a group of one or more containers that share the same configuration
+#pod is a group of one or more containers that share the same labels
+#pod is a group of one or more containers that share the same annotations
+#pod is a group of one or more containers that share the same metadata
+#pod is a group of one or more containers that share the same spec
+#pod is a group of one or more containers that share the same status
+#pod is a group of one or more containers that share the same owner
+

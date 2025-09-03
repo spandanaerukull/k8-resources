@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Configmap
+metadata:
+  name: pod-configmap
+  labels:
+    purpose: config
+    env: dev
+data:
+  COURSE: "kubernetes"
+  DURATION: "3 months"
+  TRAINER: "SIVA KUMAR REDDY"

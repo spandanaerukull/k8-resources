@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotations
+  labels:
+    project: roboshop
+    component: mysql
+    tire: backend
+    environment: dev
+  annotations:
+    description: "This pod is created to demonstrate pod annotations"
+    jenkins: "https://jenkins.com/build/job/roboshop-catalogue/3"   
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      
+
+
+        # Annotations are used to store additional information about the pod
+        # Annotations are key-value pairs that are attached to resources in kubernetes
+        # Annotations are used to store additional information about the resource
+        # Annotations are used to store additional information about the resource that is not used by kubernetes  
+    

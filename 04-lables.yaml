@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lable
+  labels:
+    project: roboshop
+    environment: dev
+    component: frontend
+    tire: backend
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      
+
+
+
+
+
+
+
+
+
+
+# labels are used to organize and select resources in kubernetes
+# labels are key-value pairs that are attached to resources in kubernetes

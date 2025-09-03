@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Replicaset
+metadata:
+  name: nginx
+  # replica set lables , 
+  # Every resourece has it own labels
+  labels:
+    purpose: rs-demo
+    project: roboshop
+    app: nginx
+spec:
+  # number of replicas
+  replicas: 3
+  # these are the lables replica set use to create pod replicas, this should match pod labels
+  selector:
+    matchLabels:
+      purpose: rs-demo
+      project: roboshop
+      app: nginx
+  # template for pod
+  template:
+    metadata:
+      labels:
+        purpose: rs-demo
+        project: roboshop
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          
+      # This is a simple example of a replicaset that manages multiple pods running nginx
+      # It ensures that the specified number of replicas are always running 
+      #pod is subset of replicaset, replicaset is subset of deployment
+      # If a pod fails, the replicaset will create a new one to maintain the desired number of replicas
