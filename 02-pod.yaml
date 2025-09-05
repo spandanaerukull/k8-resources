@@ -4,7 +4,7 @@ metadata:
   name: nginx #pod name
   labels:
     purpose: demo
-spec:
+spec:  #specification of the pod
   containers:
     - name: nginx
       image: nginx 
