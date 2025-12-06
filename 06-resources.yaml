@@ -6,11 +6,11 @@ metadata:
     containers:
       - name: nginx
         image: nginx
-        resources: # soft limits
+        resources: # soft limits means guaranteed resources
           requests:
             memory: "68Mi"
             cpu: "100m"
-          limits: #hard limits
+          limits: #hard limits means maximum resources
             memory: "128Mi"
             cpu: "150m" #we should extend up to this limit
 
@@ -26,4 +26,3 @@ metadata:
       # CPU is measured in millicores (m) where 1000m = 1 core
       # Memory is measured in bytes (Mi, Gi, etc.)
       # It is a good practice to define resources for all containers in a pod
-      
