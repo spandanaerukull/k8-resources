@@ -13,3 +13,8 @@ spec:
           value: "kubernetes"
         - name: TRAINER
           value: "SIVA KUMAR REDDY"
+
+      # Environment variables (envars) are used to pass configuration information to containers at runtime
+      # Envars are defined in the pod spec under the containers section 
+      # Envars are defined as a list of name-value pairs
+      # Envars can be used to configure application settings, database connections, API keys, etc
