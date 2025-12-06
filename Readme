@@ -13,6 +13,13 @@ docker_installation_commands: |
   sudo systemctl enable docker
   sudo systemctl status docker # to check docker status
 
+  aw configuration commands: |
+  aws configure # this command is used for configuring aws --client
+  # it will ask for aws access key, secret key, region and output format
+  # you can get the access key and secret key from aws iam service
+  # region can be us-east-1
+  
+
 eks_cluster_creation_commands: |
   ARCH=amd64
   PLATFORM=$(uname -s)_$ARCH

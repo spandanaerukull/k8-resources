@@ -6,12 +6,13 @@ metadata:
     project: roboshop
     purpose: multi-contaione-demo
 spec:
-  containers:
-    - name: nginx
-      image: nginx
-    - name:  almalinux
-      image: almalinux:9
-      command: ["sleep", "1000"]
+  containers: # list of containers in the pod
+    - name: nginx  # container name
+      image: nginx # container image
+    - name:  almalinux # container name
+      image: almalinux:9 # container image
+      command: ["sleep", "1000"] # command to run in the container
+      
 
 
 
@@ -19,4 +20,12 @@ spec:
       #      # This is a multi-container pod example
       #      # A pod can have multiple containers running together
       #      # Each container can run a different application or service
-      #
+      #     # In this example, we have two containers: one running nginx and the other running almalinux
+      #      # The containers share the same network namespace and can communicate with each other using localhost
+      #      # The containers can also share storage volumes if needed
+      #      # Multi-container pods are useful for running sidecar containers, which provide additional functionality to the main container
+      #      # For example, a logging sidecar container can collect and forward logs from the main application container
+      #      # Another example is a proxy sidecar container that handles network traffic for the main application container
+      #      # Multi-container pods are also useful for running helper containers that perform tasks such as data processing or monitoring
+      #      # Overall, multi-container pods provide a way to group related containers together and manage them as a single unit
+      

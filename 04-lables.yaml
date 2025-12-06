@@ -1,10 +1,10 @@
 apiVersion: v1
-kind: Pod
+kind: Pod # pod resource in kubernetes
 metadata:
   name: lable
-  labels:
+  labels:   # labels are key-value pairs that are attached to resources in kubernetes
     project: roboshop
-    environment: dev
+    environment: dev 
     component: frontend
     tire: backend
 spec:
@@ -16,11 +16,19 @@ spec:
 
 
 
-
-
-
-
-
-
 # labels are used to organize and select resources in kubernetes
 # labels are key-value pairs that are attached to resources in kubernetes
+# labels are used to organize and select resources in kubernetes
+# labels are used to identify resources in kubernetes
+# labels are used to group resources in kubernetes
+# labels are used to filter resources in kubernetes
+# labels are used to select resources in kubernetes
+# labels are used to manage resources in kubernetes 
+# labels are used to monitor resources in kubernetes
+# labels are used to deploy resources in kubernetes
+# labels are used to scale resources in kubernetes
+# labels are used to update resources in kubernetes
+# labels are used to delete resources in kubernetes
+# labels are used to create resources in kubernetes 
+# labels are used to describe resources in kubernetes
+# labels are used to annotate resources in kubernetes 

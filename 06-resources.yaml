@@ -13,3 +13,17 @@ metadata:
           limits: #hard limits
             memory: "128Mi"
             cpu: "150m" #we should extend up to this limit
+
+      # Resources in kubernetes are used to limit the resource usage of containers
+      # Resources are defined in terms of CPU and Memory
+      # Resources are defined in two parts: requests and limits
+      # Requests are the minimum resources required by the container to run
+      # Limits are the maximum resources that can be used by the container
+      # Requests are used by the scheduler to decide which node to place the pod on
+      # Limits are used by the kubelet to limit the resource usage of the container
+      # If a container exceeds its limits, it will be terminated and restarted
+      # Resources are defined in the pod spec under the containers section
+      # CPU is measured in millicores (m) where 1000m = 1 core
+      # Memory is measured in bytes (Mi, Gi, etc.)
+      # It is a good practice to define resources for all containers in a pod
+      
