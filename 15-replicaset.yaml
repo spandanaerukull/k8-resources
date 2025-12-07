@@ -17,7 +17,7 @@ spec:
       purpose: rs-demo
       project: roboshop
       app: nginx
-  # template for pod
+  # pod template used by replicaset to create pod replicas, this should match pod labels
   template:
     metadata:
       labels:

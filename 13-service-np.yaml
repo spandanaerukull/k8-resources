@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-np
+  name: nginx-np # Name of the service with NodePort type
   labels:
     purpose: service-np-demo
 spec:
-  type: NodePort
+  type: NodePort # Service type is NodePort to expose the service on a static port on each Node's IP address
   selector:
     purpose: service-np-demo
     project: roboshop
@@ -30,3 +30,4 @@ spec:
       - name: nginx
         image: nginx
         
+# The Service of type NodePort is used to expose the Pod named nginx-np on a static port on each Node's IP address
