@@ -8,4 +8,7 @@ spec:
       image: nginx
       envFrom:
         - configMapRef:
-            name: pod-configmap
+            name: pod-configmap # Reference to the ConfigMap named pod-configmap
+
+            # EnvFrom is used to load environment variables from a ConfigMap
+            # Here we are loading all key-value pairs from the ConfigMap named pod-configmap

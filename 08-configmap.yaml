@@ -9,3 +9,6 @@ data:
   COURSE: "kubernetes"
   DURATION: "3 months"
   TRAINER: "SIVA KUMAR REDDY"
+
+# ConfigMap is used to store configuration data in key-value pairs
+# ConfigMap can be used to pass configuration data to pods and containers

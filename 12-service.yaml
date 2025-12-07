@@ -5,14 +5,16 @@ metadata:
   labels:
     purpose: service-demo
 spec:
-  selector:
-    purpose: service-demo
-    project: roboshop
-    environment: dev
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  
+  selector: # Selector is used to select the pods that the service will route traffic to
+    purpose: service-demo # must match the pod labels
+    project: roboshop # must match the pod labels
+    environment: dev # must match the pod labels
+  
+  ports: # Ports define the port mappings for the service
+    - protocol: TCP # protocol used by the service
+      port: 80 # service port
+      targetPort: 80 # container port
       
 
 ---
@@ -21,12 +23,15 @@ spec:
   metadata:
     name: nginx
     labels:
-      purpose: service-demo
-      project: roboshop
-      env: dev
+      purpose: service-demo # must match the service selector
+      project: roboshop # must match the service selector
+      environment: dev # must match the service selector
   spec:
     containers:
       - name: nginx
         image: nginx
+
+        # The Service is used to expose the Pod named nginx
+
         
 
