@@ -49,11 +49,12 @@ spec:
     image: nginx
     volumeMounts: # here am mounting the volume to container
     - name: persistent-storage
-      mountPath: /usr/share/nginx/html
-  volumes: # here am creating volume to mount pvc to pod
-  - name: persistent-storage
-    persistentVolumeClaim:
-      claimName: ebs-static
+      mountPath: /usr/share/nginx/html # path where the volume will be mounted inside the container
+  volumes: # here am creating volume to mount pvc to pod 
+  - name: persistent-storage # volume name
+    persistentVolumeClaim: # mounting pvc to pod
+      claimName: ebs-static # pvc name
+
 # This Pod runs an Nginx container and mounts the EBS-backed PersistentVolumeClaim at /usr/share/nginx/html.
 # The Pod is scheduled to run on nodes in the 'us-east-1c' availability zone.
 
@@ -65,3 +66,14 @@ spec:
 # The Pod is scheduled to run on nodes in the 'us-east-1a' availability zone using a node selector.
 # The PersistentVolumeClaim ensures that the Pod has access to the required storage.
 # The Nginx container will serve content from the EBS volume mounted at /usr/share/nginx/html.
+
+# here are creating the volume to the pod and and mounting to the container inside the pod an i correct ?
+# Yes, you are correct. In the provided manifest file, a PersistentVolume (PV) and a PersistentVolumeClaim (PVC) are created first.
+
+# The PV named 'ebs-static' is backed by an AWS EBS volume, and it provides 20Gi of storage with ReadWriteOnce access mode.
+# The PVC named 'ebs-static' requests 15Gi of storage from the 'ebs-static' PV.
+# Then, a Pod named 'nginx' is created, which runs an Nginx container.
+# Inside the Pod specification, the PVC is mounted as a volume named 'persistent-storage' at the path /usr/share/nginx/html within the Nginx container.
+# This setup allows the Nginx container to use the EBS volume for persistent storage, meaning that any data written to /usr/share/nginx/html will be stored on the EBS volume and will persist even if the Pod is deleted or recreated. 
+# So, in summary, the volume is created using the PVC, and it is mounted to the Nginx container inside the Pod.
+
