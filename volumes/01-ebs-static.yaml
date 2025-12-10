@@ -12,7 +12,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: vol-0c16d3f01a6a95d6f # this volume is created by me in aws console and attaching here 
+    volumeHandle: vol-0c16d3f01a6a95d6f # this volume is created by me in aws console and attaching here so the pv uses this ebs volume
 
 # This PersistentVolume can be used by Pods in the cluster to store data persistently using the specified EBS volume.
 
@@ -33,26 +33,35 @@ spec:
 # This PersistentVolumeClaim requests 15Gi of storage from the 'ebs-static' PersistentVolume.
 # It specifies ReadWriteOnce access mode and binds to the 'ebs-static' volume created above.
 
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: nginx
-#   labels:
-#     purpose: ebs-static-demo
-#     project: roboshop
-# spec:
-#   nodeSelector:
-#     topology.kubernetes.io/zone: us-east-1a
-#   containers:
-#   - name: nginx
-#     image: nginx
-#     volumeMounts: # docker run -v host-path:container-path
-#     - name: persistent-storage
-#       mountPath: /usr/share/nginx/html
-#   volumes:
-#   - name: persistent-storage
-#     persistentVolumeClaim:
-      # claimName: ebs-static
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    purpose: ebs-static-demo
+    project: roboshop
+spec:
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1a
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts: # here am mounting the volume to container
+    - name: persistent-storage
+      mountPath: /usr/share/nginx/html
+  volumes: # here am creating volume to mount pvc to pod
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: ebs-static
 # This Pod runs an Nginx container and mounts the EBS-backed PersistentVolumeClaim at /usr/share/nginx/html.
 # The Pod is scheduled to run on nodes in the 'us-east-1c' availability zone.
+
+# can you give me explanation for above code?
+# This manifest file creates a PersistentVolume (PV), a PersistentVolumeClaim (PVC), and a Pod that uses the PVC to mount an AWS EBS volume.
+# The PV named 'ebs-static' uses an existing EBS volume and provides 20Gi of storage with ReadWriteOnce access mode.
+# The PVC named 'ebs-static' requests 15Gi of storage from the 'ebs-static' PV.
+# Finally, a Pod named 'nginx' runs an Nginx container and mounts the PVC at /usr/share/nginx/html, allowing the container to use the EBS volume for persistent storage.
+# The Pod is scheduled to run on nodes in the 'us-east-1a' availability zone using a node selector.
+# The PersistentVolumeClaim ensures that the Pod has access to the required storage.
+# The Nginx container will serve content from the EBS volume mounted at /usr/share/nginx/html.
