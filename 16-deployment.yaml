@@ -23,10 +23,12 @@ spec:
         purpose: deployment-demo
         project: roboshop
         app: nginx
-    spec:
+    spec:  
       container:
         - name: nginx
           image: nginx:latest
+
+   #       
 ---
 apiVersion: v1
 kind: Service

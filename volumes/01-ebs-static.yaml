@@ -1,0 +1,17 @@
+# This manifest file creates a PersistentVolume named 'ebs-static' using an AWS EBS volume.
+    # The volume has a capacity of 20Gi and supports ReadWriteOnce access mode.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ebs-static
+spec:
+  accessModes: # Access mode for the  persistent volume
+  - ReadWriteOnce # the volume can be mounted as read-write by a single node (ebs cannot be mounted to multiple nodes simultaneously)
+  capacity:
+    storage: 20Gi
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    volumeHandle: vol-0c16d3f01a6a95d6f # this volume is created by me in aws console and attaching here
+
+    

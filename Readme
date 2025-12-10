@@ -33,7 +33,7 @@ eks_cluster_creation_commands: |
 
   sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
 
-  eksctl create cluster -f eks.yaml # this command is used for creating the cluster
+  eksctl create cluster -f eks.yaml      # this command is used for creating the cluster
 
 kubectl_installation_commands: |
   curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.33.3/2025-08-03/bin/linux/amd64/kubectl

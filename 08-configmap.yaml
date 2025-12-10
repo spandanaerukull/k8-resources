@@ -5,7 +5,7 @@ metadata:
   labels:
     purpose: config
     env: dev
-data:
+data: # Key-value pairs for configuration
   COURSE: "kubernetes"
   DURATION: "3 months"
   TRAINER: "SIVA KUMAR REDDY"
