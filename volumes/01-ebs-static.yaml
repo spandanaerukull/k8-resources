@@ -42,8 +42,8 @@ metadata:
     purpose: ebs-static-demo
     project: roboshop
 spec:
-  nodeSelector:
-    topology.kubernetes.io/zone: us-east-1a
+  nodeSelector: # scheduling the pod to run on specific nodes
+    topology.kubernetes.io/zone: us-east-1a # scheduling the pod to run in specific availability zone
   containers:
   - name: nginx
     image: nginx
@@ -54,6 +54,25 @@ spec:
   - name: persistent-storage # volume name
     persistentVolumeClaim: # mounting pvc to pod
       claimName: ebs-static # pvc name
+
+---
+# to acess this application from outside the cluster we need to create service for this pod
+apiVersion: v1
+kind: Service 
+metadata:
+  name: ebs-static
+  labels:
+    purpose: ebs-static-demo
+    project: roboshop
+spec:
+  type: LoadBalancer # to access outside the cluster because it exposes the service externally using a cloud provider's load balancer
+  selector:
+    purpose: ebs-static-demo
+    project: roboshop
+  ports:
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
 
 # This Pod runs an Nginx container and mounts the EBS-backed PersistentVolumeClaim at /usr/share/nginx/html.
 # The Pod is scheduled to run on nodes in the 'us-east-1c' availability zone.
@@ -76,4 +95,5 @@ spec:
 # Inside the Pod specification, the PVC is mounted as a volume named 'persistent-storage' at the path /usr/share/nginx/html within the Nginx container.
 # This setup allows the Nginx container to use the EBS volume for persistent storage, meaning that any data written to /usr/share/nginx/html will be stored on the EBS volume and will persist even if the Pod is deleted or recreated. 
 # So, in summary, the volume is created using the PVC, and it is mounted to the Nginx container inside the Pod.
+
 
