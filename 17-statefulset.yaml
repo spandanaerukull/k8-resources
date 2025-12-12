@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc-headless
+  labels:
+    purpose: statefulset
+    project: roboshop
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None # headless service
+  selector:
+    purpose: statefulset
+    project: roboshop
+
+    # This is a headless service used by the StatefulSet to manage network identities for its Pods
+# here we are creating headless service because statefulset needs stable network identities for each pod in the statefulset
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc-normal
+  labels:
+    purpose: statefulset
+    project: roboshop
+spec:
+  ports:
+  - port: 80
+    name: web
+  selector:
+    purpose: statefulset
+    project: roboshop
+    # This is a normal service used to access the Pods in the StatefulSet without stable network identities
+    # here we are creating the normal service  because app (like cart or catalogue) needs data -> it contacts the database -> for that we create the a normal (clusterip) service to access the pods in statefulset
+---
+apiVersion: apps/v1
+kind: StatefulSet 
+metadata:
+  name: nginx-statefulset
+spec:
+  selector:
+    matchLabels:
+      purpose: statefulset
+      project: roboshop # has to match .spec.template.metadata.labels
+  serviceName: "nginx-svc-headless" # this should be headless service
+  replicas: 3 # by default is 1
+  template:
+    metadata:
+      labels:
+        purpose: statefulset
+        project: roboshop # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  # This is nothing but PVC, you can directly create here
+  volumeClaimTemplates: # this is used to create PVCs for each pod in statefulset
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "efs-roboshop"
+      resources:
+        requests:
+          storage: 2Gi
+
+
+# here am creating statefulset for nginx with 3 replicas and each pod will have its own persistent storage using PVC created from volumeClaimTemplates
+
+
+
+
+
+
+
+
+
+
+          # can you explain me the above statefulset
+          # This StatefulSet manages a set of Pods running nginx with stable network identities and persistent storage.
+          # Each Pod gets a unique, stable hostname based on its ordinal index (e.g., nginx-statefulset-0, nginx-statefulset-1, etc.) and is associated with a PersistentVolumeClaim (PVC) for data persistence.
+          # The StatefulSet uses a headless service (nginx-svc-headless) to manage the network identities of its Pods.
+          # The volumeClaimTemplates section defines a template for creating PVCs for each Pod, ensuring that each Pod has its own persistent storage.
+          # The normal service (nginx-svc-normal) can be used to access the Pods in the StatefulSet without stable network identities.
+          # The StatefulSet ensures that the specified number of replicas are always running, and if a Pod fails, it will be recreated with the same identity and storage.
+          # StatefulSets are typically used for applications that require stable network identities and persistent storage, such as databases.
