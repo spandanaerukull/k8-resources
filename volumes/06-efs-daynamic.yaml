@@ -28,6 +28,8 @@ spec:
   - name: persistent-storage
     persistentVolumeClaim:
       claimName: efs-dynamic
+      # Mounting the dynamically provisioned EFS volume to the Pod
+      # containers use the volume via volumemount section
 ---
 apiVersion: v1
 kind: Service
